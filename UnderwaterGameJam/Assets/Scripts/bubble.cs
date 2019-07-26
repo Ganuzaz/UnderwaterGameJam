@@ -12,5 +12,13 @@ public class bubble : MonoBehaviour
         rb.velocity = transform.up * speed;
     }
 
-    
+    private void OnTriggerEnter2D(Collider2D hitInfo)
+    {
+        Debug.Log(hitInfo.name);
+        Destroy(gameObject);
+    }
+    void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+    }
 }
