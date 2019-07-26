@@ -23,15 +23,19 @@ public abstract class People : MonoBehaviour
                 OnChangeToIdle();
                 break;
             case BehaviorState.WALKING:
-
+                OnChangeToWalking();
                 break;
             case BehaviorState.CONFUSED:
+                OnChangeToConfused();
                 break;
             case BehaviorState.NOTICED:
+                OnChangeToNoticed();
                 break;
             case BehaviorState.SLIPPING:
+                OnChangeToSlipping();
                 break;
             case BehaviorState.FALLING:
+                OnChangeToFalling();
                 break;
         }
 
@@ -62,21 +66,23 @@ public abstract class People : MonoBehaviour
         }
 
     }
+    #region StateUpdate
     protected abstract void OnIdle();
     protected abstract void OnWalking();
     protected abstract void OnConfused();
     protected abstract void OnNoticed();
     protected abstract void OnSlipping();
     protected abstract void OnFalling();
+    #endregion
 
-
+    #region OnChangeState
     protected abstract void OnChangeToIdle();
     protected abstract void OnChangeToWalking();
     protected abstract void OnChangeToConfused();
     protected abstract void OnChangeToNoticed();
     protected abstract void OnChangeToSlipping();
     protected abstract void OnChangeToFalling();
-
+    #endregion
 
     // Start is called before the first frame update
     protected virtual void Start()
