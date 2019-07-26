@@ -18,6 +18,14 @@ public class MonsterMovement : MonoBehaviour
     {
         Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         moveVelocity = moveInput.normalized * speed;
+        if (Input.GetAxisRaw("Horizontal") > 0f )
+        {
+            transform.localScale = new Vector2(1f, 1f);
+        }
+        else if (Input.GetAxisRaw("Horizontal") < 0f)
+        {
+            transform.localScale = new Vector2(-1f, 1f);
+        }
     }
 
     private void FixedUpdate()
