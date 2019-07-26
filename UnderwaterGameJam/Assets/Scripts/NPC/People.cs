@@ -95,6 +95,6 @@ public abstract class People : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {   
-        OnState();
+        OnState();       
     }
 }
