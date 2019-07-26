@@ -4,6 +4,25 @@ using UnityEngine;
 
 public class NormalPeople : People
 {
+
+    public Vector2 idleTimerRange = new Vector2(0, 3);
+
+    
+
+    // Start is called before the first frame update
+    protected override void Start()
+    {
+        base.Start();
+        timer = new Timer(this);
+    }
+
+    // Update is called once per frame
+    protected override void Update()
+    {
+        base.Update();
+    }
+
+
     protected override void OnChangeToConfused()
     {
         throw new System.NotImplementedException();
@@ -16,7 +35,7 @@ public class NormalPeople : People
 
     protected override void OnChangeToIdle()
     {
-        throw new System.NotImplementedException();
+       
     }
 
     protected override void OnChangeToNoticed()
@@ -31,7 +50,7 @@ public class NormalPeople : People
 
     protected override void OnChangeToWalking()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     protected override void OnConfused()
@@ -46,7 +65,6 @@ public class NormalPeople : People
 
     protected override void OnIdle()
     {
-        throw new System.NotImplementedException();
     }
 
     protected override void OnNoticed()
@@ -64,15 +82,7 @@ public class NormalPeople : People
         throw new System.NotImplementedException();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+ 
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
