@@ -173,7 +173,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 11.846808
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -307,6 +307,16 @@ PrefabInstance:
       propertyPath: speed
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 399862253288194821, guid: 70e3e818765eaa74cbab74b2faed5b56,
+        type: 3}
+      propertyPath: force
+      value: 1500
+      objectReference: {fileID: 0}
+    - target: {fileID: 399862253288194821, guid: 70e3e818765eaa74cbab74b2faed5b56,
+        type: 3}
+      propertyPath: headButtPower
+      value: 3000
+      objectReference: {fileID: 0}
     - target: {fileID: 7317076228415276065, guid: 70e3e818765eaa74cbab74b2faed5b56,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -325,7 +335,7 @@ PrefabInstance:
     - target: {fileID: 2833642912753375715, guid: 70e3e818765eaa74cbab74b2faed5b56,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2833642912753375715, guid: 70e3e818765eaa74cbab74b2faed5b56,
         type: 3}
@@ -335,7 +345,7 @@ PrefabInstance:
     - target: {fileID: 5958495494449936225, guid: 70e3e818765eaa74cbab74b2faed5b56,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5958495494449936225, guid: 70e3e818765eaa74cbab74b2faed5b56,
         type: 3}
@@ -347,6 +357,51 @@ PrefabInstance:
         type: 3}
       propertyPath: m_FlipX
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6595727647683383870, guid: 70e3e818765eaa74cbab74b2faed5b56,
+        type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6595727647683383870, guid: 70e3e818765eaa74cbab74b2faed5b56,
+        type: 3}
+      propertyPath: m_UseAutoMass
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6595727647683383870, guid: 70e3e818765eaa74cbab74b2faed5b56,
+        type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6595727647683383870, guid: 70e3e818765eaa74cbab74b2faed5b56,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: e608907ca88ced249a778cfe6ab7dcfa, type: 2}
+    - target: {fileID: 6595727647683383870, guid: 70e3e818765eaa74cbab74b2faed5b56,
+        type: 3}
+      propertyPath: m_Simulated
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6595727647683383870, guid: 70e3e818765eaa74cbab74b2faed5b56,
+        type: 3}
+      propertyPath: m_UseFullKinematicContacts
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6595727647683383870, guid: 70e3e818765eaa74cbab74b2faed5b56,
+        type: 3}
+      propertyPath: m_GravityScale
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6595727647683383870, guid: 70e3e818765eaa74cbab74b2faed5b56,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6595727647683383870, guid: 70e3e818765eaa74cbab74b2faed5b56,
+        type: 3}
+      propertyPath: m_LinearDrag
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6595727647683383869, guid: 70e3e818765eaa74cbab74b2faed5b56, type: 3}
