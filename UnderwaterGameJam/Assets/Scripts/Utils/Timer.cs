@@ -56,6 +56,7 @@ public class Timer
 
     public void RemoveAllListener()
     {
+        if(OnTimerFinished!=null)
         foreach(Delegate d in OnTimerFinished.GetInvocationList())
         {
             OnTimerFinished -= (OnTimerFinishedEvent)d;
@@ -64,9 +65,11 @@ public class Timer
 
     IEnumerator StartTimerCoroutine()
     {
+        Debug.Log("Coroutine Start");
         coroutineRunning = true;
         while (timePassed <= timeLimit)
         {
+            Debug.Log("timer = "+timePassed);
             timePassed += Time.deltaTime;
             yield return null;
         }

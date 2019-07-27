@@ -5,6 +5,9 @@ using UnityEngine;
 public class PeopleWithGun : NormalPeople { 
     // Start is called before the first frame update
 
+
+
+
     
 
 

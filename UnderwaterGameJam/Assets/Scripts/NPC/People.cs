@@ -14,15 +14,15 @@ public abstract class People : MonoBehaviour
         FALLING
     }
     protected BehaviorState currentBehavior;
-    public Vector2 speed = new Vector2(0,0);
-
     protected Timer timer;
     protected void ChangeState(BehaviorState state)
     {
+        
         switch (state) {
 
             case BehaviorState.IDLE:
                 OnChangeToIdle();
+                
                 break;
             case BehaviorState.WALKING:
                 OnChangeToWalking();
@@ -40,7 +40,8 @@ public abstract class People : MonoBehaviour
                 OnChangeToFalling();
                 break;
         }
-
+        currentBehavior = state;
+        Debug.Log("Current State = " + currentBehavior);
     }
 
     protected void OnState()
@@ -89,7 +90,7 @@ public abstract class People : MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        currentBehavior = BehaviorState.IDLE;
+        ChangeState( BehaviorState.IDLE);
     }
 
     // Update is called once per frame
