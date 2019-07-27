@@ -10,7 +10,7 @@ Material:
   m_Name: Water
   m_Shader: {fileID: -6465566751694194690, guid: 4277a80e21d8572e8ac46c7b24b50c4b,
     type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -20,5 +20,7 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs: []
-    m_Floats: []
-    m_Colors: []
+    m_Floats:
+    - Vector1_756994EA: 0.2
+    m_Colors:
+    - Color_807ACF04: {r: 0, g: 0.952054, b: 1, a: 0}
