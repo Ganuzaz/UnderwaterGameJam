@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class People : MonoBehaviour
 {
-    protected enum BehaviorState
+    public enum BehaviorState
     {
         IDLE,
         WALKING,
@@ -15,6 +15,11 @@ public abstract class People : MonoBehaviour
     }
     protected BehaviorState currentBehavior;
     protected Timer timer;
+    public BehaviorState GetState()
+    {
+        return currentBehavior;
+    }
+
     protected void ChangeState(BehaviorState state)
     {
         

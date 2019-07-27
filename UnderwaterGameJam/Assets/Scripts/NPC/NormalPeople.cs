@@ -13,6 +13,7 @@ public class NormalPeople : People
     public float walkingSpeed = 1.5f;
     public float runningSpeed = 3.0f;
 
+    private bool facingLeft = false;
 
     private void Awake()
     {
@@ -30,6 +31,7 @@ public class NormalPeople : People
     protected override void Update()
     {
         base.Update();
+        LineofSight();
     }
 
     private void StopAndStartTimer(Vector2 range,BehaviorState state)
@@ -38,7 +40,7 @@ public class NormalPeople : People
         timer.SetTimeLimit(Random.Range(range.x, range.y));
         timer.AddListener(() => { ChangeState(state); });
         timer.StartTimer();
-        Debug.Log("Listener Added");
+        //Debug.Log("Listener Added");
     }
 
     protected override void OnChangeToConfused()
@@ -94,7 +96,7 @@ public class NormalPeople : People
 
     protected override void OnNoticed()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     protected override void OnSlipping()
@@ -107,7 +109,30 @@ public class NormalPeople : People
 
     }
 
- 
+
+    protected virtual void LineofSight()
+    {
+
+        var hit = Physics2D.Raycast(transform.position, facingLeft ? Vector2.left : Vector2.right, 5f,LayerMask.GetMask("People"));
+
+        if (hit)
+        {
+            if (hit.transform.GetComponent<People>() )
+            {
+                switch (hit.transform.GetComponent<People>().GetState()) {
+                    case BehaviorState.FALLING:
+                    case BehaviorState.SLIPPING:
+                        ChangeState(BehaviorState.NOTICED);
+                        break;
+                }
+
+            }
+
+
+        }
+    }
+
+    
 
 
 }
