@@ -21,7 +21,7 @@ public class arrowRotation : MonoBehaviour
             //this.GetComponent<SpriteRenderer>().sprite = newArrow;
 
             //this is used to flip the arrow because the way the code works tends to create a buggy rotation depending on where the arrow is pointing initially
-            
+            sr.flipX = true; sr.flipY = true;
 
             Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
@@ -31,7 +31,8 @@ public class arrowRotation : MonoBehaviour
 
         else if(monster.GetComponent<Transform>().localScale.x > 0) {
             //this.GetComponent<SpriteRenderer>().sprite = oldArrow;
-            sr.flipX = true;
+           
+            
 
             Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;

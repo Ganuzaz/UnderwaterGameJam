@@ -15,6 +15,7 @@ public class MonsterMovement : MonoBehaviour
 
     void Start()
     {
+        
         sr = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
     }
@@ -55,6 +56,8 @@ public class MonsterMovement : MonoBehaviour
     void headButt()
     {
         canMove = false;
+        //tell public bool in shootBubble script to unable shooting
+        GameObject.Find("Monster").GetComponent<shootBubble>().canShoot = false;
         readyHeadbutt = true;
         arrow.SetActive(true);
         if (this.GetComponent<Transform>().localScale.x > 0) { 
@@ -65,7 +68,7 @@ public class MonsterMovement : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, monsterRotationSpeed * Time.deltaTime);
         }
         else if (this.GetComponent<Transform>().localScale.x < 0) {
-            sr.flipX = true;
+            sr.flipX = true; sr.flipY = true;
             Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);

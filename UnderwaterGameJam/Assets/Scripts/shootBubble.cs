@@ -5,14 +5,17 @@ using UnityEngine;
 public class shootBubble : MonoBehaviour
 {
     public Transform firePoint;
-    public GameObject bubblePrefab;
-
+    public GameObject bubblePrefab,arrow;
+    public bool canShoot = true;
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire2"))
+        if (canShoot)
         {
-            shoot();
+            if (Input.GetButtonDown("Fire2"))
+            {
+                shoot();
+            }
         }
     }
 
