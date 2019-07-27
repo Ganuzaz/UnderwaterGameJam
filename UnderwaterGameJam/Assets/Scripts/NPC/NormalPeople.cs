@@ -21,8 +21,9 @@ public class NormalPeople : People
     // Start is called before the first frame update
     protected override void Start()
     {
-        base.Start();
+        
         timer = new Timer(this);
+        base.Start();
     }
 
     // Update is called once per frame
@@ -36,6 +37,8 @@ public class NormalPeople : People
         timer.StopTimerAndRemoveListeners();
         timer.SetTimeLimit(Random.Range(range.x, range.y));
         timer.AddListener(() => { ChangeState(state); });
+        timer.StartTimer();
+        Debug.Log("Listener Added");
     }
 
     protected override void OnChangeToConfused()
@@ -50,7 +53,10 @@ public class NormalPeople : People
 
     protected override void OnChangeToIdle()
     {
+        rigidbody.velocity = Vector2.zero;
         StopAndStartTimer(idleTimerRange, BehaviorState.WALKING);
+        //animation idle
+
     }
 
     protected override void OnChangeToNoticed()
@@ -67,6 +73,9 @@ public class NormalPeople : People
     {
         StopAndStartTimer(walkingTimerRange, BehaviorState.IDLE);
         walkingSpeed = Random.Range(0, 2) == 0 ?  -Mathf.Abs(walkingSpeed) : Mathf.Abs(walkingSpeed);
+        rigidbody.velocity = new Vector2(walkingSpeed, 0);
+        //animation walking
+
     }
 
     protected override void OnConfused()
@@ -95,7 +104,7 @@ public class NormalPeople : People
 
     protected override void OnWalking()
     {
-        throw new System.NotImplementedException();
+
     }
 
  
