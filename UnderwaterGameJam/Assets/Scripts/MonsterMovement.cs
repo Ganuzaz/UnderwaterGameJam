@@ -11,7 +11,7 @@ public class MonsterMovement : MonoBehaviour
     private Vector2 moveVelocity;
     public GameObject arrow;
     
-    private bool readyHeadbutt = false, readyAim = false, canMove= true,gravityOn=true;
+    private bool  readyAim = false, canMove= true;
     SpriteRenderer sr;
     // Start is called before the first frame update
 
@@ -46,8 +46,9 @@ public class MonsterMovement : MonoBehaviour
         if (Input.GetButtonDown("Fire1") || readyAim == true)
         {
             headButtAim();
-
+            
         }
+        
 
     }
 
@@ -57,20 +58,23 @@ public class MonsterMovement : MonoBehaviour
         {
             rb.MovePosition(rb.position + moveVelocity * Time.fixedDeltaTime);
         }
+        if (readyAim)
+        {
+            headButtForce();
+        }
 
-        headButtForce();
-        
 
 
     }
-    void headButtAim()
+    void headButtAim()  //the aiming of the headbutt
     {
         rb.gravityScale = 0;
         canMove = false;
         //tell public bool in shootBubble script to unable shooting
         GetComponent<shootBubble>().canShoot = false;
         readyAim = true;
-        arrow.SetActive(true);
+
+        arrow.GetComponent<SpriteRenderer>().enabled = true;
 
         if (this.GetComponent<Transform>().localScale.x > 0) { 
             
@@ -89,18 +93,19 @@ public class MonsterMovement : MonoBehaviour
             Quaternion rotation = Quaternion.AngleAxis(-180 + angle, Vector3.forward);
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, monsterRotationSpeed* Time.deltaTime);
          }
-
-        readyHeadbutt = true;
+        
+        
     }
-    void headButtForce()
+    void headButtForce()  //the actual headbutt
     {
 
         var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         var mouseDir = mousePos - gameObject.transform.position;
         mouseDir.z = 0.0f;
         mouseDir = mouseDir.normalized;
-        if (Input.GetButtonDown("Fire1") && readyHeadbutt)
+        if (Input.GetButtonDown("Fire1"))
         {
+            arrow.GetComponent<SpriteRenderer>().enabled = false;
             rb.gravityScale = 3;
             rb.AddForce(mouseDir * headButtPower);
         }
