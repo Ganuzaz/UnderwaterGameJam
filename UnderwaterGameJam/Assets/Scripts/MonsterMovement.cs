@@ -33,6 +33,7 @@ public class MonsterMovement : MonoBehaviour
             }
             else if (Input.GetAxisRaw("Horizontal") < 0f)
             {
+                
                 transform.localScale = new Vector2(-1f, 1f);
             }
         }
@@ -57,7 +58,7 @@ public class MonsterMovement : MonoBehaviour
     {
         canMove = false;
         //tell public bool in shootBubble script to unable shooting
-        GameObject.Find("Monster").GetComponent<shootBubble>().canShoot = false;
+        GetComponent<shootBubble>().canShoot = false;
         readyHeadbutt = true;
         arrow.SetActive(true);
         if (this.GetComponent<Transform>().localScale.x > 0) { 
@@ -66,12 +67,15 @@ public class MonsterMovement : MonoBehaviour
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, monsterRotationSpeed * Time.deltaTime);
+            
+            
         }
         else if (this.GetComponent<Transform>().localScale.x < 0) {
-            sr.flipX = true; sr.flipY = true;
+            //sr.flipX = true; sr.flipY = true;
+
             Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            Quaternion rotation = Quaternion.AngleAxis(-180 + angle, Vector3.forward);
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, monsterRotationSpeed* Time.deltaTime);
          }
     }
