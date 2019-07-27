@@ -9,9 +9,9 @@ public class MonsterMovement : MonoBehaviour
     private float monsterRotationSpeed = 5f;
     private Rigidbody2D rb;
     private Vector2 moveVelocity;
-    public GameObject arrow;
+    public GameObject arrow,water;
     
-    private bool  readyAim = false, canMove= true;
+    private bool  readyHeadbutt=false,readyAim = false, canMove= true;
     SpriteRenderer sr;
     // Start is called before the first frame update
 
@@ -58,10 +58,9 @@ public class MonsterMovement : MonoBehaviour
         {
             rb.MovePosition(rb.position + moveVelocity * Time.fixedDeltaTime);
         }
-        if (readyAim)
-        {
-            headButtForce();
-        }
+        
+           headButtForce();
+        
 
 
 
@@ -73,7 +72,6 @@ public class MonsterMovement : MonoBehaviour
         //tell public bool in shootBubble script to unable shooting
         GetComponent<shootBubble>().canShoot = false;
         readyAim = true;
-
         arrow.GetComponent<SpriteRenderer>().enabled = true;
 
         if (this.GetComponent<Transform>().localScale.x > 0) { 
@@ -96,19 +94,31 @@ public class MonsterMovement : MonoBehaviour
         
         
     }
-    void headButtForce()  //the actual headbutt
-    {
 
-        var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        var mouseDir = mousePos - gameObject.transform.position;
-        mouseDir.z = 0.0f;
-        mouseDir = mouseDir.normalized;
-        if (Input.GetButtonDown("Fire1"))
+     void headButtForce()  //the actual headbutt
+    {
+        
+  
+        if (Input.GetButtonUp("Fire1"))
         {
+            var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            var mouseDir = mousePos - gameObject.transform.position;
+            mouseDir.z = 0.0f;
+            mouseDir = mouseDir.normalized;
             arrow.GetComponent<SpriteRenderer>().enabled = false;
             rb.gravityScale = 3;
             rb.AddForce(mouseDir * headButtPower);
+            readyAim = false;
+            readyHeadbutt = true;
         }
     }
-  
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("Hit detected");
+        this.transform.localRotation = Quaternion.Euler(0, 0, 0);
+        canMove = true;
+    }
+
+
 }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7166906312785897278}
   - component: {fileID: 164420851160511658}
   - component: {fileID: 164420851160511659}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: bubble
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,6 +130,6 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.9102086, y: 0.4310514}
   serializedVersion: 2
-  m_Radius: 21.243435
+  m_Radius: 11.674127
