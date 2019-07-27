@@ -5,7 +5,7 @@ using UnityEngine;
 public class shootBubble : MonoBehaviour
 {
     public Transform firePoint;
-    public GameObject bubblePrefab,arrow;
+    public GameObject bubblePrefab;
     public bool canShoot = true;
     // Update is called once per frame
     void Update()
