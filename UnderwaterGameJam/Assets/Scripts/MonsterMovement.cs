@@ -5,31 +5,71 @@ using UnityEngine;
 public class MonsterMovement : MonoBehaviour
 {
     public float speed;
+    private float monsterRotationSpeed = 5f;
     private Rigidbody2D rb;
     private Vector2 moveVelocity;
+    public GameObject arrow;
+    private bool readyHeadbutt = false, canMove= true;
+    SpriteRenderer sr;
     // Start is called before the first frame update
+
     void Start()
     {
+        sr = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        moveVelocity = moveInput.normalized * speed;
-        if (Input.GetAxisRaw("Horizontal") > 0f )
+        if (canMove == true)
         {
-            transform.localScale = new Vector2(1f, 1f);
+            Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+            moveVelocity = moveInput.normalized * speed;
+            if (Input.GetAxisRaw("Horizontal") > 0f)
+            {
+                transform.localScale = new Vector2(1f, 1f);
+            }
+            else if (Input.GetAxisRaw("Horizontal") < 0f)
+            {
+                transform.localScale = new Vector2(-1f, 1f);
+            }
         }
-        else if (Input.GetAxisRaw("Horizontal") < 0f)
-        {
-            transform.localScale = new Vector2(-1f, 1f);
-        }
+       
+
+
+
+            if (Input.GetButtonDown("Fire1") || readyHeadbutt== true)
+            {
+                headButt();
+            }
     }
 
     private void FixedUpdate()
     {
-        rb.MovePosition(rb.position + moveVelocity * Time.fixedDeltaTime);
+        if (canMove == true)
+        {
+            rb.MovePosition(rb.position + moveVelocity * Time.fixedDeltaTime);
+        }
+    }
+    void headButt()
+    {
+        canMove = false;
+        readyHeadbutt = true;
+        arrow.SetActive(true);
+        if (this.GetComponent<Transform>().localScale.x > 0) { 
+            
+            Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, monsterRotationSpeed * Time.deltaTime);
+        }
+        else if (this.GetComponent<Transform>().localScale.x < 0) {
+            sr.flipX = true;
+            Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, monsterRotationSpeed* Time.deltaTime);
+         }
     }
 }
