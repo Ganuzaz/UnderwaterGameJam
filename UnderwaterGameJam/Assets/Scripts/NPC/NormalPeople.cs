@@ -139,7 +139,10 @@ public class NormalPeople : People
         }
     }
 
-    
+    public override void Damage()
+    {
+        
+    }
 
 
 }

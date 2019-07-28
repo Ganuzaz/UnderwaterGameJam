@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class People : MonoBehaviour
+public abstract class People : MonoBehaviour, Enemy
 {
     public enum BehaviorState
     {
@@ -101,5 +101,10 @@ public abstract class People : MonoBehaviour
     protected virtual void Update()
     {   
         OnState();       
+    }
+
+    public virtual void Damage()
+    {
+       
     }
 }
