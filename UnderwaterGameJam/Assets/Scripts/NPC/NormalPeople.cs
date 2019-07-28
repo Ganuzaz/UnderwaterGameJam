@@ -20,11 +20,12 @@ public class NormalPeople : People
     private int health = 1;
     private void Awake()
     {
-        rigidbody = GetComponent<Rigidbody2D>();
+       
     }
     // Start is called before the first frame update
     protected override void Start()
-    {        
+    {
+        rigidbody = GetComponent<Rigidbody2D>();
         timer = new Timer(this);
         base.Start();
     }
