@@ -8,8 +8,11 @@ PhysicsMaterial2D:
   m_PrefabAsset: {fileID: 0}
   m_Name: Ground
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   friction: 0
 =======
+=======
+>>>>>>> Stashed changes
   friction: 0.4
 >>>>>>> Stashed changes
   bounciness: 0.5
