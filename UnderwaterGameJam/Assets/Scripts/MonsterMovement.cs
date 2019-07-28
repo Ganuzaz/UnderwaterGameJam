@@ -29,7 +29,7 @@ public class MonsterMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Velocity = " + rb.velocity);
+
         moveVelocity = Vector2.zero;
         if (canMove == true)
         {
@@ -62,7 +62,8 @@ public class MonsterMovement : MonoBehaviour
         }
         else
         {
-            if (headbutting) anim.speed = 2;
+            if (hitGround) { anim.speed = 0;Debug.Log("ANIM SPEED 0"); }
+            else if (headbutting) anim.speed = 2;
             else anim.speed = 1;
         }
 
@@ -145,7 +146,7 @@ public class MonsterMovement : MonoBehaviour
     IEnumerator checkHeadbuttStatus()
     {
         yield return new WaitForFixedUpdate();
-        while (rb.velocity.magnitude > 2)
+        while (rb.velocity.magnitude > 4)
         {
             
             yield return null;
@@ -153,7 +154,7 @@ public class MonsterMovement : MonoBehaviour
         if (hitGround)
         {
             yield return new WaitForFixedUpdate();
-            while (rb.velocity.magnitude > 2)
+            while (rb.velocity.magnitude > 4)
             {
                 yield return null;
             }
@@ -161,10 +162,14 @@ public class MonsterMovement : MonoBehaviour
         }
 
         float time = 0;
-        while (transform.rotation.eulerAngles.magnitude != 0)
+        while (transform.rotation.eulerAngles.magnitude > 0.1f)
         {
             time += Time.deltaTime;
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.identity, time);
+
+            if (transform.rotation.eulerAngles.magnitude <= 1)
+                transform.rotation = Quaternion.identity;
+
             yield return null;
         }
 
@@ -177,13 +182,14 @@ public class MonsterMovement : MonoBehaviour
     private bool hitGround = false;
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log(collision.transform.tag);
         if (headbutting && collision.transform.CompareTag("Ground"))
         {
+            Debug.Log("GROUND TRUE");
+
             hitGround = true;
         }
     }
-
-
 
 
     private void OnTriggerEnter2D(Collider2D collision)
