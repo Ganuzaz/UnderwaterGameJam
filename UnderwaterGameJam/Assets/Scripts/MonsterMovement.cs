@@ -48,11 +48,11 @@ public class MonsterMovement : MonoBehaviour
 
             if (Input.GetAxisRaw("Horizontal") > 0f)
             {
-                transform.localScale = new Vector2(1f, 1f);
+                transform.localScale = new Vector2(0.5f, 0.5f);
             }
             else if (Input.GetAxisRaw("Horizontal") < 0f)
             {
-                transform.localScale = new Vector2(-1f, 1f);
+                transform.localScale = new Vector2(-0.5f, 0.5f);
             }
         }
 
@@ -115,7 +115,7 @@ public class MonsterMovement : MonoBehaviour
         Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
 
         var temp = transform.localScale;
-        temp.x = direction.x > transform.position.x ? 1 : -1;
+        temp.x = direction.x > transform.position.x ? 0.5f : -0.5f;
         transform.localScale = temp;
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
