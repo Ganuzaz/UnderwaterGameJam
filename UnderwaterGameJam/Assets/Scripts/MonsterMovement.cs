@@ -192,7 +192,7 @@ public class MonsterMovement : MonoBehaviour
         canMove = true;
         headbutting = false;
         
-        rb.gravityScale = 3f;
+        rb.gravityScale = 1f;
     }
     private bool hitGround = false;
     private void OnCollisionEnter2D(Collision2D collision)
@@ -200,20 +200,20 @@ public class MonsterMovement : MonoBehaviour
         Debug.Log(collision.transform.tag);
         if (headbutting && collision.transform.CompareTag("Ground"))
         {
-            Debug.Log("GROUND TRUE");
+            
             headButtImpact.Play();
             hitGround = true;
         }
     }
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Debug.Log("Hit detected");
-        this.transform.localRotation = Quaternion.Euler(0, 0, 0);
-        canMove = true;
-        GetComponent<shootBubble>().canShoot = true;
-    }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    Debug.Log("Hit detected");
+    //    this.transform.localRotation = Quaternion.Euler(0, 0, 0);
+    //    canMove = true;
+    //    GetComponent<shootBubble>().canShoot = true;
+    //}
 
 
 }
