@@ -236,6 +236,7 @@ GameObject:
   - component: {fileID: 6595727647683383841}
   - component: {fileID: 248461919}
   - component: {fileID: 248461925}
+  - component: {fileID: 461250192}
   m_Layer: 0
   m_Name: Monster
   m_TagString: Untagged
@@ -326,7 +327,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 2
   m_AngularDrag: 1
-  m_GravityScale: 3
+  m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: e608907ca88ced249a778cfe6ab7dcfa, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -351,10 +352,10 @@ MonoBehaviour:
   headButtSound: {fileID: 8711023632623683172}
   headButtImpact: {fileID: 633460485303926890}
   waterSound: {fileID: 7676585815341047039}
-  limitxLeft: 0
-  limitxRight: 0
-  limityUp: 0
-  limityDown: 0
+  limitxLeft: -40.9
+  limitxRight: 5.5
+  limityUp: -2.25
+  limityDown: -4.25
   headbutting: 0
 --- !u!114 &6595727647683383841
 MonoBehaviour:
@@ -408,6 +409,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &461250192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6595727647683383868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24da3ad177432e04bbfe1d345e97d88d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 5
 --- !u!1 &6595727649111720258
 GameObject:
   m_ObjectHideFlags: 0

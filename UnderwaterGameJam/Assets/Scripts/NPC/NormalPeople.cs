@@ -6,6 +6,7 @@ public class NormalPeople : People
 {
 
     private Rigidbody2D rigidbody;
+    protected Animator anim;
 
     public GameObject monster;
 
@@ -20,7 +21,7 @@ public class NormalPeople : People
     private int health = 1;
     private void Awake()
     {
-       
+        anim = GetComponent<Animator>();
     }
     // Start is called before the first frame update
     protected override void Start()
