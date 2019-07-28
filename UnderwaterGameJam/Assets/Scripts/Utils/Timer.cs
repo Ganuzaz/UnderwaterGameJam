@@ -69,7 +69,7 @@ public class Timer
         coroutineRunning = true;
         while (timePassed <= timeLimit)
         {
-            Debug.Log("timer = "+timePassed);
+            //Debug.Log("timer = "+timePassed);
             timePassed += Time.deltaTime;
             yield return null;
         }
