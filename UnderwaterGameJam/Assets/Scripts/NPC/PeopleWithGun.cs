@@ -8,8 +8,8 @@ public class PeopleWithGun : NormalPeople {
     public GameObject GunHand;
     public bool EnemyNoticed = false;
 
-
-    protected Animator anim;
+    public Transform FirePoint;
+    public GameObject BulletPrefab;
 
     private void Awake()
     {
@@ -61,9 +61,15 @@ public class PeopleWithGun : NormalPeople {
     protected override void OnChangeToNoticed()
     {
         GunHand.transform.rotation = Quaternion.Euler(0, 0, 30);
+        Shoot();
         StopAndStartTimer(walkingTimerRange, BehaviorState.WALKING);
         //animation nembak
         //if udh luar kamera ancurin
+    }
+
+    private void Shoot()
+    {
+        Instantiate(BulletPrefab, FirePoint.position, FirePoint.rotation);
     }
 
 
