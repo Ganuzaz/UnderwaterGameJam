@@ -81,6 +81,8 @@ public class NormalPeople : People
 
     protected override void OnChangeToWalking()
     {
+                
+
         StopAndStartTimer(walkingTimerRange, BehaviorState.IDLE);
         walkingSpeed = Random.Range(0, 2) == 0 ?  Mathf.Abs(walkingSpeed) : Mathf.Abs(walkingSpeed);
         rigidbody.velocity = new Vector2(walkingSpeed, 0);
