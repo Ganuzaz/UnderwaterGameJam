@@ -49,7 +49,7 @@ public class MonsterMovement : MonoBehaviour
         }
 
 
-        if (moveVelocity.magnitude == 0)
+        if (moveVelocity.magnitude == 0 && canMove)
         {
             var currentState = anim.GetCurrentAnimatorStateInfo(0);
             Debug.Log(currentState.fullPathHash);
@@ -62,7 +62,8 @@ public class MonsterMovement : MonoBehaviour
         }
         else
         {
-            anim.speed = 1;
+            if (headbutting) anim.speed = 2;
+            else anim.speed = 1;
         }
 
         if ((Input.GetButtonDown("Fire1") || readyAim == true) && !headbutting)
@@ -79,8 +80,7 @@ public class MonsterMovement : MonoBehaviour
         {          
 
             rb.MovePosition(rb.position + moveVelocity * Time.fixedDeltaTime);
-
-
+            
         }
 
         headButtForce();
@@ -95,7 +95,6 @@ public class MonsterMovement : MonoBehaviour
         rb.gravityScale = 0;
         canMove = false;
         //tell public bool in shootBubble script to unable shooting
-        GetComponent<shootBubble>().canShoot = false;
         readyAim = true;
         arrow.GetComponent<SpriteRenderer>().enabled = true;
 
@@ -135,7 +134,7 @@ public class MonsterMovement : MonoBehaviour
             mouseDir.z = 0.0f;
             mouseDir = mouseDir.normalized;
             arrow.GetComponent<SpriteRenderer>().enabled = false;
-            rb.gravityScale = 3;
+            rb.gravityScale = 0;
             rb.AddForce(mouseDir * headButtPower);
             readyAim = false;
             headbutting = true;
@@ -145,11 +144,44 @@ public class MonsterMovement : MonoBehaviour
 
     IEnumerator checkHeadbuttStatus()
     {
+        yield return new WaitForFixedUpdate();
+        while (rb.velocity.magnitude > 2)
+        {
+            
+            yield return null;
+        }
+        if (hitGround)
+        {
+            yield return new WaitForFixedUpdate();
+            while (rb.velocity.magnitude > 2)
+            {
+                yield return null;
+            }
 
-        Debug.Log(rb.velocity);
-        yield return null;
+        }
+
+        float time = 0;
+        while (transform.rotation.eulerAngles.magnitude != 0)
+        {
+            time += Time.deltaTime;
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.identity, time);
+            yield return null;
+        }
+
+        hitGround = false;
+        canMove = true;
+        headbutting = false;
+        
+        rb.gravityScale = 3f;
     }
-
+    private bool hitGround = false;
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (headbutting && collision.transform.CompareTag("Ground"))
+        {
+            hitGround = true;
+        }
+    }
 
 
 
