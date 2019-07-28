@@ -26,8 +26,7 @@ public abstract class People : MonoBehaviour
         switch (state) {
 
             case BehaviorState.IDLE:
-                OnChangeToIdle();
-                
+                OnChangeToIdle();                
                 break;
             case BehaviorState.WALKING:
                 OnChangeToWalking();

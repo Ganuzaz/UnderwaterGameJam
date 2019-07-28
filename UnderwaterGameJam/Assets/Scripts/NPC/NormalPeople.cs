@@ -6,6 +6,9 @@ public class NormalPeople : People
 {
 
     private Rigidbody2D rigidbody;
+    private BoxCollider2D boxCollider;
+
+    public GameObject monster;
 
     public Vector2 idleTimerRange = new Vector2(0.0f, 3.0f);
     public Vector2 walkingTimerRange = new Vector2(1.0f, 4.0f);
@@ -18,11 +21,11 @@ public class NormalPeople : People
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
+        boxCollider = GetComponent<BoxCollider2D>();
     }
     // Start is called before the first frame update
     protected override void Start()
-    {
-        
+    {        
         timer = new Timer(this);
         base.Start();
     }
@@ -46,35 +49,52 @@ public class NormalPeople : People
     protected override void OnChangeToConfused()
     {
         throw new System.NotImplementedException();
+        //ignore
     }
 
     protected override void OnChangeToFalling()
     {
-        throw new System.NotImplementedException();
+        rigidbody.velocity = new Vector2(0, 0);
+        boxCollider.isTrigger = true;
+        rigidbody.gravityScale = 0.1f;
+        ChangeState(BehaviorState.FALLING);
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("Masuk 1");
+        if (collision.collider.IsTouching(monster.GetComponent<BoxCollider2D>()))
+        {
+            Debug.Log("Masuk 2");
+            OnChangeToFalling();
+        }
+    }
+
 
     protected override void OnChangeToIdle()
     {
         rigidbody.velocity = Vector2.zero;
         StopAndStartTimer(idleTimerRange, BehaviorState.WALKING);
         //animation idle
-
     }
 
     protected override void OnChangeToNoticed()
     {
-        throw new System.NotImplementedException();
+        rigidbody.velocity = new Vector2(runningSpeed, 0);
+        //animation running
+        //if udh luar kamera ancurin
     }
 
     protected override void OnChangeToSlipping()
     {
         throw new System.NotImplementedException();
+        //ignore
     }
 
     protected override void OnChangeToWalking()
     {
         StopAndStartTimer(walkingTimerRange, BehaviorState.IDLE);
-        walkingSpeed = Random.Range(0, 2) == 0 ?  -Mathf.Abs(walkingSpeed) : Mathf.Abs(walkingSpeed);
+        walkingSpeed = Random.Range(0, 2) == 0 ?  Mathf.Abs(walkingSpeed) : Mathf.Abs(walkingSpeed);
         rigidbody.velocity = new Vector2(walkingSpeed, 0);
         //animation walking
 
@@ -92,6 +112,7 @@ public class NormalPeople : People
 
     protected override void OnIdle()
     {
+
     }
 
     protected override void OnNoticed()
