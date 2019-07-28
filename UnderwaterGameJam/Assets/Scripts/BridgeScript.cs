@@ -10,7 +10,7 @@ public class BridgeScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        onColliderList = new List<Enemy>();
     }
 
     // Update is called once per frame
@@ -37,7 +37,7 @@ public class BridgeScript : MonoBehaviour
     {
         if(collision.transform.GetComponent<Enemy>()!=null)
             if (onColliderList.Contains(collision.transform.GetComponent<Enemy>()))
-            {
+            {                
                 onColliderList.Remove(collision.transform.GetComponent<Enemy>());
             }
     }
