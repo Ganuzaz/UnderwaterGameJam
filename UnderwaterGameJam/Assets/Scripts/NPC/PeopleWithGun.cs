@@ -8,9 +8,14 @@ public class PeopleWithGun : NormalPeople {
     public GameObject GunHand;
     public bool EnemyNoticed = false;
 
+
+    protected Animator anim;
+
     private void Awake()
     {
         rigidbody =  GetComponent<Rigidbody2D>();
+
+        anim = GetComponent<Animator>();
     }
 
     private void StopAndStartTimer(Vector2 range, BehaviorState state)
@@ -22,10 +27,19 @@ public class PeopleWithGun : NormalPeople {
         //Debug.Log("Listener Added");
     }
 
-    protected override void OnChangeToWalking()
+    protected override void OnChangeToIdle()
     {
+        anim.SetBool("IsWalking", false);
+        rigidbody.velocity = Vector2.zero;
+        StopAndStartTimer(idleTimerRange, BehaviorState.WALKING);
+    }
+       
+
+    protected override void OnChangeToWalking()
+    { 
         if (EnemyNoticed)
         {
+            GunHand.transform.rotation = Quaternion.Euler(0, 0, 0);
             StopAndStartTimer(walkingTimerRange, BehaviorState.NOTICED);
             walkingSpeed = Random.Range(0, 2) == 0 ? -Mathf.Abs(walkingSpeed) : Mathf.Abs(walkingSpeed);
             rigidbody.velocity = new Vector2(walkingSpeed, 0);
@@ -39,11 +53,14 @@ public class PeopleWithGun : NormalPeople {
             //animation walking
         }
 
+        anim.SetBool("IsWalking", true);
+
+
     }
 
     protected override void OnChangeToNoticed()
     {
-        GunHand.transform.rotation.z.Equals(30);
+        GunHand.transform.rotation = Quaternion.Euler(0, 0, 30);
         StopAndStartTimer(walkingTimerRange, BehaviorState.WALKING);
         //animation nembak
         //if udh luar kamera ancurin

@@ -53,10 +53,10 @@ public class NormalPeople : People
     }
 
     protected override void OnChangeToFalling()
-    {       
+    {   
+        
         rigidbody.gravityScale = 0.1f;
         timer.StopTimerAndRemoveListeners();
-        //ChangeState(BehaviorState.FALLING);
     }
 
     protected override void OnChangeToIdle()
@@ -84,7 +84,15 @@ public class NormalPeople : People
         StopAndStartTimer(walkingTimerRange, BehaviorState.IDLE);
         walkingSpeed = Random.Range(0, 2) == 0 ?  Mathf.Abs(walkingSpeed) : Mathf.Abs(walkingSpeed);
         rigidbody.velocity = new Vector2(walkingSpeed, 0);
-        //animation walking
+        
+        /*if(rigidbody.velocity != new Vector2(0, 0))
+        {
+            anim.SetBool("IsWalking", false);
+        }
+        else
+        {
+            anim.SetBool("IsWalking", true);
+        }*/
 
     }
 
