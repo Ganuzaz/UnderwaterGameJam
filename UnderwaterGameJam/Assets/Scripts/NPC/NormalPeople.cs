@@ -62,12 +62,12 @@ public class NormalPeople : People
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Masuk 1");
+        /*Debug.Log("Masuk 1");
         if (collision.collider.IsTouching(monster.GetComponent<BoxCollider2D>()))
         {
             Debug.Log("Masuk 2");
             OnChangeToFalling();
-        }
+        }*/
     }
 
 
