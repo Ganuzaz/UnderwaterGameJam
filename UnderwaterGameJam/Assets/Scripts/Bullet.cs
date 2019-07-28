@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public float Speed = 20f;
+    public int damage = 1;
     public Rigidbody2D rigidbody;
 
     void Start()
@@ -14,6 +15,12 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(this);
+        Debug.Log("Die Monster");
+        MonsterHealth MH = collision.GetComponent<MonsterHealth>();
+        if(MH != null)
+        {
+            MH.TakeDamage(damage);
+            Destroy(gameObject);
+        }
     }
 }
