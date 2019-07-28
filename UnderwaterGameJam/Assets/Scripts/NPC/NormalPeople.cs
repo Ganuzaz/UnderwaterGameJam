@@ -17,6 +17,7 @@ public class NormalPeople : People
 
     private bool facingLeft = false;
 
+    private int health = 1;
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
@@ -54,7 +55,7 @@ public class NormalPeople : People
     {       
         rigidbody.gravityScale = 0.1f;
         timer.StopTimerAndRemoveListeners();
-        ChangeState(BehaviorState.FALLING);
+        //ChangeState(BehaviorState.FALLING);
     }
 
     protected override void OnChangeToIdle()
@@ -139,9 +140,14 @@ public class NormalPeople : People
         }
     }
 
-    public override void Damage()
+    public override int Damage()
     {
-        
+        health -= 1;
+        if (health <= 0)
+        {
+            ChangeState(BehaviorState.FALLING);
+        }
+        return health;
     }
 
 

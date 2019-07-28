@@ -14,7 +14,8 @@ public class MonsterMovement : MonoBehaviour
 
     public float limitxLeft, limitxRight, limityUp, limityDown;
 
-    private bool headbutting = false, readyAim = false, canMove = true;
+    private bool  readyAim = false, canMove = true;
+    public bool headbutting = false;
     SpriteRenderer sr;
     // Start is called before the first frame update
 

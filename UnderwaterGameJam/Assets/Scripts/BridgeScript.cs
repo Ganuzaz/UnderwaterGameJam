@@ -24,6 +24,12 @@ public class BridgeScript : MonoBehaviour
         if (collision.transform.GetComponent<Enemy>()!=null)
         {
             onColliderList.Add(collision.transform.GetComponent<Enemy>());
+        }else if (collision.transform.GetComponent<MonsterMovement>() != null)
+        {
+            if (collision.transform.GetComponent<MonsterMovement>().headbutting)
+            {
+                DamageAll();
+            }
         }
     }
 
@@ -40,8 +46,18 @@ public class BridgeScript : MonoBehaviour
     {
         foreach(var element in onColliderList)
         {
-            element.Damage();
+            if (element != null)
+            {
+                int health = element.Damage();
+                if(health<=0)
+                    onColliderList.Remove(element);
+            }
+            else
+                onColliderList.Remove(element);
         }
     }
+
+
+
 
 }

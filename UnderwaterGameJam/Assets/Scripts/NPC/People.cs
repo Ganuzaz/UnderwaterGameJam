@@ -103,8 +103,8 @@ public abstract class People : MonoBehaviour, Enemy
         OnState();       
     }
 
-    public virtual void Damage()
+    public virtual int Damage()
     {
-       
+        return 0;
     }
 }
