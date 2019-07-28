@@ -12,6 +12,8 @@ public class MonsterMovement : MonoBehaviour
     private Vector2 moveVelocity;
     public GameObject arrow, water;
 
+    public float limitxLeft, limitxRight, limityUp, limityDown;
+
     private bool headbutting = false, readyAim = false, canMove = true;
     SpriteRenderer sr;
     // Start is called before the first frame update
@@ -35,7 +37,9 @@ public class MonsterMovement : MonoBehaviour
         {
             Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
             moveVelocity = moveInput.normalized * speed;
-            
+
+            transform.position = new Vector3(Mathf.Clamp(transform.position.x, limitxLeft, limitxRight), Mathf.Clamp(transform.position.y, limityDown, limityUp), transform.position.z);
+
 
             if (Input.GetAxisRaw("Horizontal") > 0f)
             {
@@ -43,7 +47,6 @@ public class MonsterMovement : MonoBehaviour
             }
             else if (Input.GetAxisRaw("Horizontal") < 0f)
             {
-
                 transform.localScale = new Vector2(-1f, 1f);
             }
         }
