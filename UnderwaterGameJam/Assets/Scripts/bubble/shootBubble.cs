@@ -7,6 +7,7 @@ public class shootBubble : MonoBehaviour
     public Transform firePoint;
     public GameObject bubblePrefab;
     public bool canShoot = true;
+    public AudioSource bubbleSound;
     // Update is called once per frame
     void Update()
     {
@@ -14,6 +15,7 @@ public class shootBubble : MonoBehaviour
         {
             if (Input.GetButtonDown("Fire2"))
             {
+                bubbleSound.Play();
                 shoot();
             }
         }

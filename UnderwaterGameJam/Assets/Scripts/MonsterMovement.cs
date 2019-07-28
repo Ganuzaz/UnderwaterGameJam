@@ -11,6 +11,8 @@ public class MonsterMovement : MonoBehaviour
     private Animator anim;
     private Vector2 moveVelocity;
     public GameObject arrow, water;
+    public AudioSource headButtSound, headButtImpact,waterSound;
+
 
     public float limitxLeft, limitxRight, limityUp, limityDown;
 
@@ -25,6 +27,8 @@ public class MonsterMovement : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+
+        
         
 
     }
@@ -40,7 +44,7 @@ public class MonsterMovement : MonoBehaviour
             moveVelocity = moveInput.normalized * speed;
 
             transform.position = new Vector3(Mathf.Clamp(transform.position.x, limitxLeft, limitxRight), Mathf.Clamp(transform.position.y, limityDown, limityUp), transform.position.z);
-
+            
 
             if (Input.GetAxisRaw("Horizontal") > 0f)
             {
@@ -60,6 +64,7 @@ public class MonsterMovement : MonoBehaviour
             Debug.Log(Animator.StringToHash("Charge"));
             if (currentState.fullPathHash == Animator.StringToHash("Base Layer.Swim"))
             {
+
                 Debug.Log("I'm swimming");
                 anim.speed = 0;
             }
@@ -75,6 +80,8 @@ public class MonsterMovement : MonoBehaviour
         {
             headButtAim();
         }
+
+        
 
 
     }
@@ -96,7 +103,9 @@ public class MonsterMovement : MonoBehaviour
     }
     void headButtAim()  //the aiming of the headbutt
     {
+
         anim.SetBool("charge", true);
+        
         rb.gravityScale = 0;
         canMove = false;
         //tell public bool in shootBubble script to unable shooting
@@ -133,7 +142,9 @@ public class MonsterMovement : MonoBehaviour
         if (Input.GetButtonUp("Fire1") && readyAim)
         {
             anim.SetBool("charge", false);
-            
+            headButtSound.Play();
+            arrow.GetComponent<SpriteRenderer>().enabled = true;
+
             var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             var mouseDir = mousePos - gameObject.transform.position;
             mouseDir.z = 0.0f;
@@ -190,7 +201,7 @@ public class MonsterMovement : MonoBehaviour
         if (headbutting && collision.transform.CompareTag("Ground"))
         {
             Debug.Log("GROUND TRUE");
-
+            headButtImpact.Play();
             hitGround = true;
         }
     }
