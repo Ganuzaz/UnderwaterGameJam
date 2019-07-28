@@ -17,13 +17,15 @@ public class NormalPeople : People
 
     private bool facingLeft = false;
 
+    private int health = 1;
     private void Awake()
     {
-        rigidbody = GetComponent<Rigidbody2D>();
+       
     }
     // Start is called before the first frame update
     protected override void Start()
-    {        
+    {
+        rigidbody = GetComponent<Rigidbody2D>();
         timer = new Timer(this);
         base.Start();
     }
@@ -54,7 +56,7 @@ public class NormalPeople : People
     {       
         rigidbody.gravityScale = 0.1f;
         timer.StopTimerAndRemoveListeners();
-        ChangeState(BehaviorState.FALLING);
+        //ChangeState(BehaviorState.FALLING);
     }
 
     protected override void OnChangeToIdle()
@@ -139,7 +141,15 @@ public class NormalPeople : People
         }
     }
 
-    
+    public override int Damage()
+    {
+        health -= 1;
+        if (health <= 0)
+        {
+            ChangeState(BehaviorState.FALLING);
+        }
+        return health;
+    }
 
 
 }
