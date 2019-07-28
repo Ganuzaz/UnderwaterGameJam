@@ -191,6 +191,7 @@ public class MonsterMovement : MonoBehaviour
         Debug.Log("Hit detected");
         this.transform.localRotation = Quaternion.Euler(0, 0, 0);
         canMove = true;
+        GetComponent<shootBubble>().canShoot = true;
     }
 
 
