@@ -18,7 +18,18 @@ public class bubble : MonoBehaviour
         if(NP != null)
         {
             Debug.Log("Kena Balon");
-            NP.Bubbled(hitInfo);
+        
+            hitInfo.transform.position = transform.position;
+            hitInfo.transform.parent = this.transform;
+            StartCoroutine(bubbling(hitInfo.transform));
+        }
+    }
+
+
+    IEnumerator bubbling(Transform ppl){
+        while(true){
+            ppl.transform.position = this.transform.position;
+            yield return null;
         }
     }
     void OnBecameInvisible()

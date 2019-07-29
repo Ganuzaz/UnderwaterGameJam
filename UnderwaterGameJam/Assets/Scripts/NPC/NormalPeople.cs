@@ -171,9 +171,13 @@ public class NormalPeople : People
         return health;
     }
 
-    public void Bubbled(Collider2D HitInfo)
+    public void Bubbled()
     {
-        gameObject.transform.parent = HitInfo.transform;           
+        timer.StopTimerAndRemoveListeners();
+        ChangeState(BehaviorState.FALLING);
+        rigidbody.gravityScale=0;
+        rigidbody.velocity = Vector3.zero;
+        //gameObject.transform.parent = HitInfo.transform;           
     }
 
     public void OnTriggerEnter2D(Collider2D col){

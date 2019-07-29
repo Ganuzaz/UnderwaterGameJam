@@ -20,7 +20,9 @@ public class MonsterMovement : MonoBehaviour
     public bool headbutting = false;
     SpriteRenderer sr;
     // Start is called before the first frame update
-
+    public int health = 5;
+    public GameObject bloodEffect;
+    public bool dead = false;
     void Start()
     {
 
@@ -36,7 +38,8 @@ public class MonsterMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(dead)
+        return;
         moveVelocity = Vector2.zero;
         if (canMove == true)
         {
@@ -209,6 +212,18 @@ public class MonsterMovement : MonoBehaviour
             headButtImpact.Play();
             hitGround = true;
             //StartCoroutine(Camera.main.GetComponent<CameraScript>().Shake(0.15f, 0.4f));
+        }
+
+        if(collision.transform.name.Equals("Bullet")){
+            
+            health--;
+            var temp = Instantiate(bloodEffect);
+            temp.transform.position = this.transform.position;
+            if(health<=0){
+                dead = true;
+                anim.SetBool("Dead",true);
+            }
+            
         }
     }
 
