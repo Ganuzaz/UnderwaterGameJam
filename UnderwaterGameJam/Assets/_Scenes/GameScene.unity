@@ -702,17 +702,29 @@ PrefabInstance:
       propertyPath: CameraShake
       value: 
       objectReference: {fileID: 571335253}
-<<<<<<< Updated upstream
-=======
 <<<<<<< HEAD
+=======
     - target: {fileID: 399862253288194821, guid: 70e3e818765eaa74cbab74b2faed5b56,
         type: 3}
       propertyPath: eatPpl
       value: 
       objectReference: {fileID: 8300000, guid: d5d9542503ae2fd488de67b4ebef79dc, type: 3}
-=======
+    - target: {fileID: 6595727647683383870, guid: 70e3e818765eaa74cbab74b2faed5b56,
+        type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6595727647683383870, guid: 70e3e818765eaa74cbab74b2faed5b56,
+        type: 3}
+      propertyPath: m_GravityScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6595727647683383870, guid: 70e3e818765eaa74cbab74b2faed5b56,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 5
+      objectReference: {fileID: 0}
 >>>>>>> master
->>>>>>> Stashed changes
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70e3e818765eaa74cbab74b2faed5b56, type: 3}
 --- !u!1 &213897592
