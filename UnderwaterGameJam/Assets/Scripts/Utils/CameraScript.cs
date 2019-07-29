@@ -10,15 +10,14 @@ public class CameraScript : MonoBehaviour
 
     public IEnumerator Shake (float Duration, float Magnitude)
     {
-        Vector3 OriginalPos = transform.localPosition;
+        Vector3 OriginalPos = transform.position;
 
         float Elapsed = 0.0f;
         while(Elapsed < Duration)
         {
             float x = Random.Range(-1f, 1f) * Magnitude;
-            float Y = Random.Range(-1f, 1f) * Magnitude;
 
-            transform.localPosition = new Vector3(x, Y, OriginalPos.z);
+            transform.localPosition = new Vector3(OriginalPos.x+x, OriginalPos.y, OriginalPos.z);
 
             Elapsed += Time.deltaTime;
 

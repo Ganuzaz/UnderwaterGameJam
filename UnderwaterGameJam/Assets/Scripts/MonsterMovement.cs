@@ -203,7 +203,7 @@ public class MonsterMovement : MonoBehaviour
             
             headButtImpact.Play();
             hitGround = true;
-            StartCoroutine(CameraShake.Shake(0.15f, 0.4f));
+            StartCoroutine(CameraShake.Shake(0.15f, 0.5f));
         }
     }
 
