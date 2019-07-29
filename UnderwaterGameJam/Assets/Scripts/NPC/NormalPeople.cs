@@ -19,6 +19,8 @@ public class NormalPeople : People
     private bool facingLeft = false;
 
     private int health = 1;
+
+    public GameObject bloodParticle;
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -36,6 +38,7 @@ public class NormalPeople : People
     {
         base.Update();
         LineofSight();
+        Debug.Log(GetState());
     }
 
     private void StopAndStartTimer(Vector2 range,BehaviorState state)
@@ -55,9 +58,13 @@ public class NormalPeople : People
 
     protected override void OnChangeToFalling()
     {   
-        
-        rigidbody.gravityScale = 0.1f;
         timer.StopTimerAndRemoveListeners();
+        rigidbody.gravityScale = 0.1f;
+        GetComponent<BoxCollider2D>().isTrigger = true;
+        GetComponent<Animator>().SetBool("isWalking", false);
+        GetComponent<Animator>().SetBool("Dead",true);
+        GetComponent<Animator>().speed =0;
+        GetComponent<Animator>().SetBool("isWalking", false);
     }
 
     protected override void OnChangeToIdle()
@@ -106,7 +113,7 @@ public class NormalPeople : People
 
     protected override void OnFalling()
     {
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
 
     protected override void OnIdle()
@@ -132,6 +139,8 @@ public class NormalPeople : People
 
     protected virtual void LineofSight()
     {
+        if(GetState() == BehaviorState.FALLING)
+        return;
 
         var hit = Physics2D.Raycast(transform.position, facingLeft ? Vector2.left : Vector2.right, 5f,LayerMask.GetMask("People"));
 
@@ -162,5 +171,14 @@ public class NormalPeople : People
         return health;
     }
 
+    public void OnTriggerEnter2D(Collider2D col){
+        if(col.transform.CompareTag("Player")){
+            GetComponent<SpriteRenderer>().enabled = false;
+            var temp = Instantiate(bloodParticle);
+            temp.transform.position = transform.position;
+            temp.GetComponent<ParticleSystem>().Play();
+            GetComponent<BoxCollider2D>().enabled = false;
+        }
+    }
 
 }

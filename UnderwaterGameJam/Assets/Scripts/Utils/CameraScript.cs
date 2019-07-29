@@ -10,7 +10,7 @@ public class CameraScript : MonoBehaviour
 
     public IEnumerator Shake (float Duration, float Magnitude)
     {
-        Vector3 OriginalPos = transform.localPosition;
+        Vector3 OriginalPos = transform.position;
 
         float Elapsed = 0.0f;
         while(Elapsed < Duration)
@@ -25,7 +25,7 @@ public class CameraScript : MonoBehaviour
             yield return null;
         }
 
-        transform.localPosition = OriginalPos;
+        transform.position = OriginalPos;
     }
 
     private void Update()

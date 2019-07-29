@@ -39,6 +39,7 @@ public class BridgeScript : MonoBehaviour
             if (onColliderList.Contains(collision.transform.GetComponent<Enemy>()))
             {                
                 onColliderList.Remove(collision.transform.GetComponent<Enemy>());
+                
             }
     }
 
@@ -49,8 +50,7 @@ public class BridgeScript : MonoBehaviour
             if (element != null)
             {
                 int health = element.Damage();
-                if(health<=0)
-                    onColliderList.Remove(element);
+                
             }
             else
                 onColliderList.Remove(element);

@@ -43,7 +43,7 @@ public class MonsterMovement : MonoBehaviour
             Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
             moveVelocity = moveInput.normalized * speed;
 
-            transform.position = new Vector3(Mathf.Clamp(transform.position.x, limitxLeft, limitxRight), Mathf.Clamp(transform.position.y, limityDown, limityUp), transform.position.z);
+            //transform.position = new Vector3(Mathf.Clamp(transform.position.x, limitxLeft, limitxRight), Mathf.Clamp(transform.position.y, limityDown, limityUp), transform.position.z);
             
 
             if (Input.GetAxisRaw("Horizontal") > 0f)
@@ -60,12 +60,8 @@ public class MonsterMovement : MonoBehaviour
         if (moveVelocity.magnitude == 0 && canMove)
         {
             var currentState = anim.GetCurrentAnimatorStateInfo(0);
-            Debug.Log(currentState.fullPathHash);
-            Debug.Log(Animator.StringToHash("Charge"));
             if (currentState.fullPathHash == Animator.StringToHash("Base Layer.Swim"))
             {
-
-                Debug.Log("I'm swimming");
                 anim.speed = 0;
             }
         }
@@ -115,6 +111,14 @@ public class MonsterMovement : MonoBehaviour
         Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
 
         var temp = transform.localScale;
+
+        if(Camera.main.ScreenToWorldPoint(Input.mousePosition).x > transform.position.x){
+            temp.x = Mathf.Abs(temp.x);
+        }else{
+            temp.x = -Mathf.Abs(temp.x);
+        }
+        
+
         temp.x = direction.x > transform.position.x ? 0.5f : -0.5f;
         transform.localScale = temp;
 
@@ -141,6 +145,7 @@ public class MonsterMovement : MonoBehaviour
 
         if (Input.GetButtonUp("Fire1") && readyAim)
         {
+            GetComponent<shootBubble>().canShoot = false;
             anim.SetBool("charge", false);
             headButtSound.Play();
             arrow.GetComponent<SpriteRenderer>().enabled = true;
@@ -191,7 +196,7 @@ public class MonsterMovement : MonoBehaviour
         hitGround = false;
         canMove = true;
         headbutting = false;
-        
+        GetComponent<shootBubble>().canShoot = true;
         rb.gravityScale = 1f;
     }
     private bool hitGround = false;
@@ -203,18 +208,17 @@ public class MonsterMovement : MonoBehaviour
             
             headButtImpact.Play();
             hitGround = true;
-            StartCoroutine(CameraShake.Shake(0.15f, 0.4f));
+            //StartCoroutine(Camera.main.GetComponent<CameraScript>().Shake(0.15f, 0.4f));
         }
     }
 
 
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    Debug.Log("Hit detected");
-    //    this.transform.localRotation = Quaternion.Euler(0, 0, 0);
-    //    canMove = true;
-    //    GetComponent<shootBubble>().canShoot = true;
-    //}
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+       if(collision.transform.CompareTag("Man")){
+           anim.SetTrigger("eat");
+       }
+    }
 
 
 }

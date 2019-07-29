@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class PeopleWithGun : NormalPeople {
     // Start is called before the first frame update
-    private Rigidbody2D rigidbody;
+    private Rigidbody2D rbody;
     public GameObject GunHand;
     public bool EnemyNoticed = false;
 
     public Transform FirePoint;
     public GameObject BulletPrefab;
 
+    
     private void Awake()
     {
-        rigidbody =  GetComponent<Rigidbody2D>();
+        rbody =  GetComponent<Rigidbody2D>();
 
         anim = GetComponent<Animator>();
     }
@@ -30,7 +31,7 @@ public class PeopleWithGun : NormalPeople {
     protected override void OnChangeToIdle()
     {
         anim.SetBool("IsWalking", false);
-        rigidbody.velocity = Vector2.zero;
+        rbody.velocity = Vector2.zero;
         StopAndStartTimer(idleTimerRange, BehaviorState.WALKING);
     }
        
@@ -42,14 +43,14 @@ public class PeopleWithGun : NormalPeople {
             GunHand.transform.rotation = Quaternion.Euler(0, 0, 0);
             StopAndStartTimer(walkingTimerRange, BehaviorState.NOTICED);
             walkingSpeed = Random.Range(0, 2) == 0 ? -Mathf.Abs(walkingSpeed) : Mathf.Abs(walkingSpeed);
-            rigidbody.velocity = new Vector2(walkingSpeed, 0);
+            rbody.velocity = new Vector2(walkingSpeed, 0);
             //animation shooting
         }
         else
         {
             StopAndStartTimer(walkingTimerRange, BehaviorState.IDLE);
             walkingSpeed = Random.Range(0, 2) == 0 ? -Mathf.Abs(walkingSpeed) : Mathf.Abs(walkingSpeed);
-            rigidbody.velocity = new Vector2(walkingSpeed, 0);
+            rbody.velocity = new Vector2(walkingSpeed, 0);
             //animation walking
         }
 
@@ -72,7 +73,7 @@ public class PeopleWithGun : NormalPeople {
         Instantiate(BulletPrefab, FirePoint.position, FirePoint.rotation);
     }
 
-
+    
 
 
 

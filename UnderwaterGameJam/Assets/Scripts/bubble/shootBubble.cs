@@ -15,6 +15,9 @@ public class shootBubble : MonoBehaviour
         {
             if (Input.GetButtonDown("Fire2"))
             {
+                GetComponent<Animator>().speed =1;
+                GetComponent<Animator>().SetTrigger("shoot");   
+                             
                 bubbleSound.Play();
                 shoot();
             }

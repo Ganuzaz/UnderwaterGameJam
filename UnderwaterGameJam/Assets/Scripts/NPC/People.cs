@@ -22,7 +22,8 @@ public abstract class People : MonoBehaviour, Enemy
 
     protected void ChangeState(BehaviorState state)
     {
-        
+        if(GetState() == BehaviorState.FALLING)
+        return;
         switch (state) {
 
             case BehaviorState.IDLE:
