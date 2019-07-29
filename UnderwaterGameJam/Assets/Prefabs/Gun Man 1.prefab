@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5562349878875278901}
   - component: {fileID: 5562349878875278900}
   - component: {fileID: 9054573481357852041}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Gun Man 1
   m_TagString: Man
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5562349879656030786}
   - component: {fileID: 5562349879656030784}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Gun Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -263,7 +263,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5562349880609867547}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Containter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -294,7 +294,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9054573481060650972}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
