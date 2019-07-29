@@ -150,7 +150,6 @@ public class NormalPeople : People
             {
                 switch (hit.transform.GetComponent<People>().GetState()) {
                     case BehaviorState.FALLING:
-                    case BehaviorState.SLIPPING:
                         ChangeState(BehaviorState.NOTICED);
                         break;
                 }
