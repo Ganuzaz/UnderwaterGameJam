@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 893204914}
   m_Layer: 0
   m_Name: NormalPeople
-  m_TagString: Untagged
+  m_TagString: Man
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,6 +100,8 @@ MonoBehaviour:
   walkingTimerRange: {x: 1, y: 4}
   walkingSpeed: 1.5
   runningSpeed: 3
+  bloodParticle: {fileID: 290240400782549122, guid: dde6c255d51579e4ca324c5a102fe8ec,
+    type: 3}
 --- !u!61 &1474609769225100965
 BoxCollider2D:
   m_ObjectHideFlags: 0

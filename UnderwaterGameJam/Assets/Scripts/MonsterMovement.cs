@@ -216,6 +216,7 @@ public class MonsterMovement : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
        if(collision.transform.CompareTag("Man")){
+           anim.speed =1;
            anim.SetTrigger("eat");
        }
     }
