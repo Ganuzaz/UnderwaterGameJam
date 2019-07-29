@@ -16,9 +16,8 @@ public class CameraScript : MonoBehaviour
         while(Elapsed < Duration)
         {
             float x = Random.Range(-1f, 1f) * Magnitude;
-            float Y = Random.Range(-1f, 1f) * Magnitude;
 
-            transform.localPosition = new Vector3(x, Y, OriginalPos.z);
+            transform.localPosition = new Vector3(OriginalPos.x+x, OriginalPos.y, OriginalPos.z);
 
             Elapsed += Time.deltaTime;
 
