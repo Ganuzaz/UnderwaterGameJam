@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneTransitionScript : MonoBehaviour
 {
+    public AudioSource bubbleSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +17,11 @@ public class SceneTransitionScript : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void PlayBubbleSound()
+    {
+        bubbleSound.Play();
     }
 
     public void SceneTransition(string SceneName)
