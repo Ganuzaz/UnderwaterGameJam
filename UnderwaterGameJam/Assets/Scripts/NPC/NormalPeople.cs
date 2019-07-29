@@ -38,7 +38,7 @@ public class NormalPeople : People
     {
         base.Update();
         LineofSight();
-        Debug.Log(GetState());
+        //Debug.Log(GetState());
     }
 
     private void StopAndStartTimer(Vector2 range,BehaviorState state)

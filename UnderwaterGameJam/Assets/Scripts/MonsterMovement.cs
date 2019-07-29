@@ -20,7 +20,7 @@ public class MonsterMovement : MonoBehaviour
     public bool headbutting = false;
     SpriteRenderer sr;
     // Start is called before the first frame update
-    public int health = 5;
+    public int health = 2;
     public GameObject bloodEffect;
     public bool dead = false;
     void Start()
@@ -222,6 +222,7 @@ public class MonsterMovement : MonoBehaviour
             if(health<=0){
                 dead = true;
                 anim.SetBool("Dead",true);
+                GameManager.instance.Lose();
             }
             
         }
