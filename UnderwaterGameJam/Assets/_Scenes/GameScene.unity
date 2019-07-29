@@ -97,7 +97,7 @@ LightmapSettings:
     m_ShowResolutionOverlay: 1
     m_ExportTrainingData: 0
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -694,7 +694,7 @@ PrefabInstance:
         type: 3}
       propertyPath: eatSound
       value: 
-      objectReference: {fileID: 8300000, guid: d5d9542503ae2fd488de67b4ebef79dc, type: 3}
+      objectReference: {fileID: 164892591}
     - target: {fileID: 6595727647683383870, guid: 70e3e818765eaa74cbab74b2faed5b56,
         type: 3}
       propertyPath: m_BodyType
@@ -710,9 +710,20 @@ PrefabInstance:
       propertyPath: m_AngularDrag
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 3177779064977284737, guid: 70e3e818765eaa74cbab74b2faed5b56,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 461250192, guid: 70e3e818765eaa74cbab74b2faed5b56, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 70e3e818765eaa74cbab74b2faed5b56, type: 3}
+--- !u!82 &164892591 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1675653574234448018, guid: 70e3e818765eaa74cbab74b2faed5b56,
+    type: 3}
+  m_PrefabInstance: {fileID: 164892590}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &213897592
 GameObject:
   m_ObjectHideFlags: 0
