@@ -12,7 +12,7 @@ public class MonsterMovement : MonoBehaviour
     private Vector2 moveVelocity;
     public GameObject arrow, water;
     public AudioSource headButtSound, headButtImpact,waterSound;
-
+    public AudioClip eatSound;
 
     public float limitxLeft, limitxRight, limityUp, limityDown;
 
@@ -234,6 +234,7 @@ public class MonsterMovement : MonoBehaviour
        if(collision.transform.CompareTag("Man")){
            anim.speed =1;
            anim.SetTrigger("eat");
+           GetComponent<AudioSource>().PlayOneShot(eatSound);
        }
     }
 

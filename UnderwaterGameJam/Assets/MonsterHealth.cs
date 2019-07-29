@@ -19,6 +19,7 @@ public class MonsterHealth : MonoBehaviour
 
     public void Die()
     {
+        Destroy(gameObject);
         //load game over screen
     }
 }

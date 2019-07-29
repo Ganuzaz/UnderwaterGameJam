@@ -53,7 +53,13 @@ public class PeopleWithGun : NormalPeople {
             rbody.velocity = new Vector2(walkingSpeed, 0);
             //animation walking
         }
-
+        var temp = transform.localScale;
+        if(walkingSpeed>0){
+            temp.x = Mathf.Abs(temp.x);
+        }else{
+            temp.x = -Mathf.Abs(temp.x);
+        }
+        transform.localScale = temp;
         anim.SetBool("IsWalking", true);
 
 
@@ -64,7 +70,6 @@ public class PeopleWithGun : NormalPeople {
         GunHand.transform.rotation = Quaternion.Euler(0, 0, 30);
         Shoot();
         StopAndStartTimer(walkingTimerRange, BehaviorState.WALKING);
-        EnemyNoticed = true;
         //animation nembak
         //if udh luar kamera ancurin
     }

@@ -94,7 +94,13 @@ public class NormalPeople : People
         StopAndStartTimer(walkingTimerRange, BehaviorState.IDLE);
         walkingSpeed = Random.Range(0, 2) == 0 ?  Mathf.Abs(walkingSpeed) : Mathf.Abs(walkingSpeed);
         rigidbody.velocity = new Vector2(walkingSpeed, 0);
-        
+        var temp = transform.localScale;
+        if(walkingSpeed>0){
+            temp.x = Mathf.Abs(temp.x);
+        }else{
+            temp.x = -Mathf.Abs(temp.x);
+        }
+        transform.localScale = temp;
         /*if(rigidbody.velocity != new Vector2(0, 0))
         {
             anim.SetBool("IsWalking", false);
@@ -150,6 +156,7 @@ public class NormalPeople : People
             {
                 switch (hit.transform.GetComponent<People>().GetState()) {
                     case BehaviorState.FALLING:
+                    case BehaviorState.SLIPPING:
                         ChangeState(BehaviorState.NOTICED);
                         break;
                 }
