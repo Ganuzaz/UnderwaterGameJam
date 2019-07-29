@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MonsterMovement : MonoBehaviour
 {
-
+    public CameraScript CameraShake;
     public float speed, headButtPower;
     private float monsterRotationSpeed = 5f;
     private Rigidbody2D rb;
@@ -203,6 +203,7 @@ public class MonsterMovement : MonoBehaviour
             
             headButtImpact.Play();
             hitGround = true;
+            StartCoroutine(CameraShake.Shake(0.15f, 0.4f));
         }
     }
 
