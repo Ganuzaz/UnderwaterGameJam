@@ -15,7 +15,6 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Die Monster");
         MonsterHealth MH = collision.GetComponent<MonsterHealth>();
         if(MH != null)
         {

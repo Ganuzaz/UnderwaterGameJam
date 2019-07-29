@@ -14,8 +14,12 @@ public class bubble : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        Debug.Log(hitInfo.name);
-        Destroy(gameObject);
+        NormalPeople NP = hitInfo.GetComponent<NormalPeople>();
+        if(NP != null)
+        {
+            Debug.Log("Kena Balon");
+            NP.Bubbled(hitInfo);
+        }
     }
     void OnBecameInvisible()
     {

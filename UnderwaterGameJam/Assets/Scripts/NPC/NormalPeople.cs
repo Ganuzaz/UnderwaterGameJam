@@ -171,6 +171,11 @@ public class NormalPeople : People
         return health;
     }
 
+    public void Bubbled(Collider2D HitInfo)
+    {
+        gameObject.transform.parent = HitInfo.transform;           
+    }
+
     public void OnTriggerEnter2D(Collider2D col){
         if(col.transform.CompareTag("Player")){
             GetComponent<SpriteRenderer>().enabled = false;
