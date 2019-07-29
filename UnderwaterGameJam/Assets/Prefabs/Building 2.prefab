@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 4526140874357607122}
   - component: {fileID: 4526140874357607133}
   - component: {fileID: -3357093874152248951}
+  - component: {fileID: 4009379058435290750}
   m_Layer: 0
   m_Name: Building 2
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -113,7 +114,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.3013816, y: 0.050230503}
+  m_Offset: {x: -0.3013816, y: -0.21676111}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -124,5 +125,20 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5835524, y: 2.4172144}
+  m_Size: {x: 1.5835524, y: 2.9511976}
   m_EdgeRadius: 0
+--- !u!114 &4009379058435290750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4526140874357607132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a00b6a18596f6db1b16bbff3fd9eee1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 2
+  smokeParticle: {fileID: 4378941422481195768, guid: be1c8e8470f2e6441aaa15884d532443,
+    type: 3}
